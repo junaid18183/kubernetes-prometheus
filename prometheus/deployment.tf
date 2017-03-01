@@ -1,7 +1,7 @@
 #----------------------------------------------------------------
 resource "kubernetes_deployment" "prometheus" {
    name = "prometheus"
-   namespace = "${kubernetes_namespace.monitoring.name}"
+   namespace = "${var.namespace}"
    spec = <<SPEC
   replicas: 1
   strategy:
@@ -43,3 +43,4 @@ resource "kubernetes_deployment" "prometheus" {
      
 SPEC
 }
+#----------------------------------------------------------------

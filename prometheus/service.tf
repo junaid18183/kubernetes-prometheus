@@ -1,7 +1,7 @@
 #----------------------------------------------------------------
 resource "kubernetes_service" "prometheus" {
    name = "prometheus"
-   namespace = "${kubernetes_namespace.monitoring.name}"
+   namespace = "${var.namespace}"   
    spec = <<SPEC
   selector:
     app: prometheus
