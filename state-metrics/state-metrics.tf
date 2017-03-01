@@ -1,6 +1,6 @@
 resource "kubernetes_deployment" "state-metrics" {
    name = "state-metrics"
-   namespace = "${kubernetes_namespace.monitoring.name}"
+   namespace = "${var.namespace}"
    spec = <<SPEC
      replicas: 1
      template:
@@ -21,7 +21,7 @@ SPEC
 #----------------------------------------------------------------
 resource "kubernetes_service" "state-metrics" {
    name = "state-metrics"
-   namespace = "${kubernetes_namespace.monitoring.name}"
+   namespace = "${var.namespace}"
    annotations {
      name = "prometheus.io/scrape"
      value = "true"

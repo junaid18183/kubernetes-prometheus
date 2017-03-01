@@ -1,7 +1,7 @@
 #----------------------------------------------------------------
 resource "kubernetes_service" "node-exporter" {
    name = "node-exporter"
-   namespace = "${kubernetes_namespace.monitoring.name}"
+   namespace = "${var.namespace}"
    annotations {
      name = "prometheus.io/scrape"
      value = "true"
@@ -20,7 +20,7 @@ SPEC
 #----------------------------------------------------------------
 resource "kubernetes_daemonset" "node-exporter" {
    name = "node-exporter"
-   namespace = "${kubernetes_namespace.monitoring.name}"
+   namespace = "${var.namespace}"
   spec = <<SPEC
   template:
     metadata:
