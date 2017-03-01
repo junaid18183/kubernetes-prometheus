@@ -1,7 +1,7 @@
 #----------------------------------------------------------------
 resource "kubernetes_service" "alertmanager" {
    name = "alertmanager"
-   namespace = "${kubernetes_namespace.monitoring.name}"
+   namespace = "${var.namespace}"
    spec = <<SPEC
   selector:
     app: alertmanager
@@ -16,7 +16,7 @@ SPEC
 #----------------------------------------------------------------
 resource "kubernetes_deployment" "alertmanager" {
    name = "alertmanager"
-   namespace = "${kubernetes_namespace.monitoring.name}"
+   namespace = "${var.namespace}"
    spec = <<SPEC
   replicas: 1
   template:

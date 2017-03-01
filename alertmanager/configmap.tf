@@ -1,17 +1,18 @@
 #----------------------------------------------------------------
 resource "kubernetes_configmap" "alertmanager-configmap" {
    name = "alertmanager-configmap"
+   namespace = "${var.namespace}"
    labels {
        app = "prometheus"
    }
    data {
   config.yml = "
     global:
-      slack_api_url: 'https://hooks.slack.com/services/XYZ'
-      smtp_smarthost: 'your_smtp_host:587'
-      smtp_from: 'prometheus@ijuned.com'
-      smtp_auth_username: 'your_smtp_username'
-      smtp_auth_password: 'Password'
+      #slack_api_url: 'https://hooks.slack.com/services/XYZ'
+      smtp_smarthost: 'localhost:25'
+      smtp_from: 'junaid18183@gmail.com'
+      #smtp_auth_username: 'your_smtp_username'
+      #smtp_auth_password: 'Password'
     templates:
     - '/etc/alertmanager/template/*.tmpl'
     route:
@@ -29,12 +30,12 @@ resource "kubernetes_configmap" "alertmanager-configmap" {
       equal: ['alertname', 'cluster', 'service']
     receivers:
     - name: 'default-receiver'
-      slack_configs:
-      - channel: '#general'
-        text: '{{ .Alerts.Firing }}/{{ .GroupLabels.alertname }}/{{ .GroupLabels.SortedPairs.Values }}'
-        send_resolved: true
+      #slack_configs:
+      #- channel: '#general'
+      #  text: '{{ .Alerts.Firing }}/{{ .GroupLabels.alertname }}/{{ .GroupLabels.SortedPairs.Values }}'
+      #  send_resolved: true
       email_configs:
-      - to: 'juned.memon@reancloud.com'
+      - to: 'junaid18183@gmail.com'
         send_resolved: true
 "
    }
