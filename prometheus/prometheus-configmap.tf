@@ -1,6 +1,6 @@
 #----------------------------------------------------------------
 resource "kubernetes_configmap" "prometheus-configmap" {
-   name = "prometheus"
+   name = "prometheus-configmap"
    labels {
        app = "prometheus"
    }

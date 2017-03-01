@@ -1,3 +1,8 @@
+resource "kubernetes_deployment" "ingress-controller" {
+   name = "ingress-controller"
+   namespace = "${var.namespace}"
+   labels { k8s-app = "default-http-backend" }
+   spec = <<SPEC
   replicas: 1
   template:
     metadata:
@@ -42,3 +47,6 @@
         args:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
+SPEC
+}
+#----------------------------------------------------------------

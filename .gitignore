@@ -1,0 +1,6 @@
+# Ignore dist file
+.terraform/
+terraform-provider-kubernetes
+terraform.tfstate
+terraform.tfstate.backup
+notes.txt

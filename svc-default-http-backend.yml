@@ -1,6 +1,0 @@
-  ports:
-  - port: 80
-    targetPort: 8080
-  selector:
-    k8s-app: default-http-backend
-
